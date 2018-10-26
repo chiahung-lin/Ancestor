@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyInfo\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Core\AncestorException.cs" />
     <Compile Include="Core\AncestorExceptionAnalysiser.cs" />
     <Compile Include="Core\DataAccessObjectBase.cs" />
