@@ -1,22 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0B08A6F8-554F-48D4-8944-38E7AF2FE060}</ProjectGuid>
+    <ProjectGuid>{66447E6B-3CCD-43DA-B81B-D0AC0695B913}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ancestor.Core</RootNamespace>
+    <RootNamespace>Ancestor</RootNamespace>
     <AssemblyName>Ancestor.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,9 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <DocumentationFile>
-    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,32 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AncestorResult.cs" />
-    <Compile Include="Attributes\ConnectionStringAttribute.cs" />
-    <Compile Include="Attributes\HardWordAttribute.cs" />
-    <Compile Include="DataTools.cs" />
-    <Compile Include="DBObject.cs" />
-    <Compile Include="DBParameter.cs" />
-    <Compile Include="Interfaces\IAncestorResult.cs" />
-    <Compile Include="Interfaces\IConnectionString.cs" />
-    <Compile Include="Interfaces\IModel.cs" />
-    <Compile Include="OracleConnectionString.cs" />
+    <Compile Include="Core\AncestorException.cs" />
+    <Compile Include="Core\AncestorExceptionAnalysiser.cs" />
+    <Compile Include="Core\DataAccessObjectBase.cs" />
+    <Compile Include="Core\DataAccessObjectFactory.cs" />
+    <Compile Include="IAncestorResult.cs" />
+    <Compile Include="IDataAccessObject.cs" />
+    <Compile Include="IDatabaseObject.cs" />
+    <Compile Include="DataAccess\Lambda\ILambdaDataAccessObject.cs" />
+    <Compile Include="DataAccess\Lambda\LambdaExtension.cs" />
+    <Compile Include="DataAccess\Legacy\ILegacyDataAccessObject.cs" />
+    <Compile Include="DataAccess\Models\IModelDataAccessObject.cs" />
+    <Compile Include="DataAccess\Querying\IQuery.cs" />
+    <Compile Include="DataAccess\Querying\IQueryDataAccessObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ancestor.Core.nuspec" />
+    <Compile Include="Scoping\AncestorTransactionScope.cs" />
+    <Compile Include="Scoping\IDataAccessObjectFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 封裝。請啟用 NuGet 封裝還原，以下載該封裝。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
-    </PropertyGroup>
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
