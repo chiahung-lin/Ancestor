@@ -242,3 +242,4 @@ ModelManifest.xml
 .fake/
 /Ancestor-LocalTest.sln
 /locals/*
+Tests/Ancestor.IntegrationTests/
